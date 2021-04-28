@@ -15,7 +15,7 @@
 	<name>healthcare</name>
 	<description>Health Care App</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
