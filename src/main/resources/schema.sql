@@ -1,0 +1,7 @@
+CREATE TABLE HOSPITAL(
+   ID INT PRIMARY KEY      NOT NULL,
+   HOSPITAL_NAME  TEXT     NOT NULL,
+   GEN         INT      NOT NULL,
+   HDU         INT      NOT NULL,
+   ICU         INT      NOT NULL
+);

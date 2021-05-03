@@ -24,69 +24,69 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" href="/home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                <a class="nav-link active" href="/hospitalcreate">Add Facility</a>
                             </li>
                         </ul>
-                        <!--<form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>-->
                     </div>
                 </div>
             </nav>
 
         <div class="p-3 mb-2 bg-info text-dark .bg-gradient">
-            <h5 th:text="${applicationTitle}"></h5>
+            <h5> Bed Allocation Details </h5>
         </div>
 
-            <table class="table">
+        <div class="table-responsive">
+            <table class="table table-info table-bordered">
+                <thead>
                 <tr>
-                    <th>Bed No</th>
-                    <th>Availability</th>
-                    <th>Name of Person</th>
+                    <th scope="col">SR No.</th>
+                    <th scope="col">DCHCs</th>
+                    <th colspan="3" scope="col">Allocated Beds</th>
+                    <th colspan="2" scope="col">Events</th>
                 </tr>
                 <tr>
-                    <!--<td th:text="${prod.name}">Onions</td>
-                    <td th:text="${prod.price}">2.41</td>
-                    <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>-->
-                    <td>1</td>
-                    <td>Available</td>
-                    <td>person1</td>
+                    <th scope="col">#</th>
+                    <th scope="col">Name of the facility</th>
+                    <th scope="col">Gen</th>
+                    <th scope="col">HDU</th>
+                    <th scope="col">ICU</th>
+                    <th colspan="2"scope="col">Actions</th>
                 </tr>
-                <tr>
-                    <!--<td th:text="${prod.name}">Onions</td>
-                    <td th:text="${prod.price}">2.41</td>
-                    <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>-->
-                    <td>2</td>
-                    <td>Not available</td>
-                    <td>person2</td>
-                </tr>
-                <tr>
-                    <!--<td th:text="${prod.name}">Onions</td>
-                    <td th:text="${prod.price}">2.41</td>
-                    <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>-->
-                    <td>1</td>
-                    <td>Reserved</td>
-                    <td>person3</td>
-                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="prod : ${hospitalModels}">
+                        <th scope="row" th:text="${prod.id}" th:field="*{id}"></th>
+                        <td th:text="${prod.hospital_Name}" th:field="*{hospital_Name}"></td>
+                        <td th:text="${prod.gen}" th:field="*{gen}"></td>
+                        <td th:text="${prod.hdu}" th:field="*{hdu}"></td>
+                        <td th:text="${prod.icu}" th:field="*{icu}"></td>
+                        <td>
+                            <form th:action="@{/hospitalUpdate}" th:object="${hospitalUpdateForm}" method="post">
+                                <input type="hidden" name="id" th:value="${prod.id}">
+                                <input type="hidden" name="hospital_Name" th:value="${prod.hospital_Name}">
+                                <input type="hidden" name="gen" th:value="${prod.gen}">
+                                <input type="hidden" name="hdu" th:value="${prod.hdu}">
+                                <input type="hidden" name="icu" th:value="${prod.icu}">
+                                <button type="submit" class="btn btn-outline-primary">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/hospitalDelete}" th:object="${hospitalUpdateForm}" method="post">
+                                <input type="hidden" name="id" th:value="${prod.id}">
+                                <input type="hidden" name="hospital_Name" th:value="${prod.hospital_Name}">
+                                <input type="hidden" name="gen" th:value="${prod.gen}">
+                                <input type="hidden" name="hdu" th:value="${prod.hdu}">
+                                <input type="hidden" name="icu" th:value="${prod.icu}">
+                                <button type="submit" class="btn btn-outline-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
+        </div>
 
             <p>
                 <a href="../home.html" th:href="@{/}">Return to home</a>
