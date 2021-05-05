@@ -6,7 +6,8 @@ public class HospitalForm {
     private String hospital_Name;
     private Integer gen;
     private Integer hdu;
-    private Integer icu;
+    private Integer positive_icu;
+    private Integer sari_icu;
 
     @Override
     public String toString() {
@@ -15,7 +16,8 @@ public class HospitalForm {
                 ", hospital_Name='" + hospital_Name + '\'' +
                 ", gen=" + gen +
                 ", hdu=" + hdu +
-                ", icu=" + icu +
+                ", positive_icu=" + positive_icu +
+                ", sari_icu=" + sari_icu +
                 '}';
     }
 
@@ -51,11 +53,19 @@ public class HospitalForm {
         this.hdu = hdu;
     }
 
-    public Integer getIcu() {
-        return icu;
+    public Integer getPositive_icu() {
+        return positive_icu;
     }
 
-    public void setIcu(Integer icu) {
-        this.icu = icu;
+    public void setPositive_icu(Integer positive_icu) {
+        this.positive_icu = positive_icu;
+    }
+
+    public Integer getSari_icu() {
+        return sari_icu;
+    }
+
+    public void setSari_icu(Integer sari_icu) {
+        this.sari_icu = sari_icu;
     }
 }

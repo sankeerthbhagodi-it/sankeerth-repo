@@ -15,7 +15,7 @@
             <h1> Supremo Healthcare </h1>
         </div>
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Navbar</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
                 <tr>
                     <th scope="col">SR No.</th>
                     <th scope="col">DCHCs</th>
-                    <th colspan="3" scope="col">Allocated Beds</th>
+                    <th colspan="4" scope="col">Allocated Beds</th>
                     <th colspan="2" scope="col">Events</th>
                 </tr>
                 <tr>
@@ -52,7 +52,8 @@
                     <th scope="col">Name of the facility</th>
                     <th scope="col">Gen</th>
                     <th scope="col">HDU</th>
-                    <th scope="col">ICU</th>
+                    <th scope="col">Positive ICU</th>
+                    <th scope="col">SARI ICU</th>
                     <th colspan="2"scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -62,14 +63,16 @@
                         <td th:text="${prod.hospital_Name}" th:field="*{hospital_Name}"></td>
                         <td th:text="${prod.gen}" th:field="*{gen}"></td>
                         <td th:text="${prod.hdu}" th:field="*{hdu}"></td>
-                        <td th:text="${prod.icu}" th:field="*{icu}"></td>
+                        <td th:text="${prod.positive_icu}" th:field="*{positive_icu}"></td>
+                        <td th:text="${prod.sari_icu}" th:field="*{sari_icu}"></td>
                         <td>
                             <form th:action="@{/hospitalUpdate}" th:object="${hospitalUpdateForm}" method="post">
                                 <input type="hidden" name="id" th:value="${prod.id}">
                                 <input type="hidden" name="hospital_Name" th:value="${prod.hospital_Name}">
                                 <input type="hidden" name="gen" th:value="${prod.gen}">
                                 <input type="hidden" name="hdu" th:value="${prod.hdu}">
-                                <input type="hidden" name="icu" th:value="${prod.icu}">
+                                <input type="hidden" name="positive_icu" th:value="${prod.positive_icu}">
+                                <input type="hidden" name="sari_icu" th:value="${prod.sari_icu}">
                                 <button type="submit" class="btn btn-outline-primary">Update</button>
                             </form>
                         </td>
@@ -79,7 +82,8 @@
                                 <input type="hidden" name="hospital_Name" th:value="${prod.hospital_Name}">
                                 <input type="hidden" name="gen" th:value="${prod.gen}">
                                 <input type="hidden" name="hdu" th:value="${prod.hdu}">
-                                <input type="hidden" name="icu" th:value="${prod.icu}">
+                                <input type="hidden" name="positive_icu" th:value="${prod.positive_icu}">
+                                <input type="hidden" name="sari_icu" th:value="${prod.sari_icu}">
                                 <button type="submit" class="btn btn-outline-danger">Delete</button>
                             </form>
                         </td>

@@ -3,18 +3,29 @@ package com.supremo.healthcare.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "hospital")
+@Table(name = "facility")
 public class Hospital {
-
-    private int id;
-
-    private String hospital_Name;
-    private Integer gen;
-    private Integer hdu;
-    private Integer icu;
 
     @Id
     @GeneratedValue()
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "hospital_Name", columnDefinition = "varchar(128)", nullable = false)
+    private String hospital_Name;
+
+    @Column(name = "gen", nullable = false)
+    private Integer gen;
+
+    @Column(name = "hdu", nullable = false)
+    private Integer hdu;
+
+    @Column(name = "positive_icu", nullable = false)
+    private Integer positive_icu;
+
+    @Column(name = "sari_icu", nullable = false)
+    private Integer sari_icu;
+
     public int getId() {
         return id;
     }
@@ -47,12 +58,20 @@ public class Hospital {
         this.hdu = hdu;
     }
 
-    public Integer getIcu() {
-        return icu;
+    public Integer getPositive_icu() {
+        return positive_icu;
     }
 
-    public void setIcu(Integer icu) {
-        this.icu = icu;
+    public void setPositive_icu(Integer positive_icu) {
+        this.positive_icu = positive_icu;
+    }
+
+    public Integer getSari_icu() {
+        return sari_icu;
+    }
+
+    public void setSari_icu(Integer sari_icu) {
+        this.sari_icu = sari_icu;
     }
 
     @Override
@@ -62,7 +81,8 @@ public class Hospital {
                 ", hospital_Name='" + hospital_Name + '\'' +
                 ", gen=" + gen +
                 ", hdu=" + hdu +
-                ", icu=" + icu +
+                ", positive_icu=" + positive_icu +
+                ", sari_icu=" + sari_icu +
                 '}';
     }
 }

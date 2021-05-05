@@ -116,7 +116,8 @@ public class HealthCareController {
             hospital.setHospital_Name(hospitalUpdateForm.getHospital_Name());
             hospital.setGen(hospitalUpdateForm.getGen());
             hospital.setHdu(hospitalUpdateForm.getHdu());
-            hospital.setIcu(hospitalUpdateForm.getIcu());
+            hospital.setPositive_icu(hospitalUpdateForm.getPositive_icu());
+            hospital.setSari_icu(hospitalUpdateForm.getSari_icu());
         }
     }
 
