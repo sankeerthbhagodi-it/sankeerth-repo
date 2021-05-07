@@ -17,24 +17,12 @@
 
             <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>-->
-                    <div class="navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="/hospitalcreate">Add Facility</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <a class="navbar-brand" href="/home">Home</a>
+                    <a class="navbar-brand" href="/hospitalcreate">Add Facility</a>
                 </div>
             </nav>
 
-        <div class="p-3 mb-2 bg-info text-dark .bg-gradient">
+        <div class="p-3 bg-info text-dark .bg-gradient">
             <h5> Bed Allocation Details </h5>
         </div>
 
@@ -43,14 +31,18 @@
                 <thead>
                 <tr>
                     <th scope="col">SR No.</th>
-                    <th scope="col">DCHCs</th>
-                    <th colspan="4" scope="col">Allocated Beds</th>
+                    <th scope="col">DCHCs Kalaburagi</th>
+                    <th colspan="4" scope="col">General Isolation</th>
+                    <th colspan="3" scope="col">ICU/HDU</th>
                     <th colspan="2" scope="col">Events</th>
                 </tr>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name of the facility</th>
-                    <th scope="col">Gen</th>
+                    <th scope="col">Facility</th>
+                    <th scope="col">Suspected + O2</th>
+                    <th scope="col">Suspected - O2</th>
+                    <th scope="col">Positive + O2</th>
+                    <th scope="col">Positive - O2</th>
                     <th scope="col">HDU</th>
                     <th scope="col">Positive ICU</th>
                     <th scope="col">SARI ICU</th>
@@ -59,17 +51,24 @@
                 </thead>
                 <tbody>
                     <tr th:each="prod : ${hospitalModels}">
-                        <th scope="row" th:text="${prod.id}" th:field="*{id}"></th>
+                        <th scope="row" th:text="${prod.serial_number}" th:field="*{serial_number}"></th>
                         <td th:text="${prod.hospital_Name}" th:field="*{hospital_Name}"></td>
-                        <td th:text="${prod.gen}" th:field="*{gen}"></td>
+                        <td th:text="${prod.suspected_with_O2}" th:field="*{suspected_with_O2}"></td>
+                        <td th:text="${prod.suspected_without_O2}" th:field="*{suspected_without_O2}"></td>
+                        <td th:text="${prod.positive_with_O2}" th:field="*{positive_with_O2}"></td>
+                        <td th:text="${prod.positive_without_O2}" th:field="*{positive_without_O2}"></td>
                         <td th:text="${prod.hdu}" th:field="*{hdu}"></td>
                         <td th:text="${prod.positive_icu}" th:field="*{positive_icu}"></td>
                         <td th:text="${prod.sari_icu}" th:field="*{sari_icu}"></td>
                         <td>
                             <form th:action="@{/hospitalUpdate}" th:object="${hospitalUpdateForm}" method="post">
                                 <input type="hidden" name="id" th:value="${prod.id}">
+                                <input type="hidden" name="serial_number" th:value="${prod.serial_number}">
                                 <input type="hidden" name="hospital_Name" th:value="${prod.hospital_Name}">
-                                <input type="hidden" name="gen" th:value="${prod.gen}">
+                                <input type="hidden" name="suspected_with_O2" th:value="${prod.suspected_with_O2}">
+                                <input type="hidden" name="suspected_without_O2" th:value="${prod.suspected_without_O2}">
+                                <input type="hidden" name="positive_with_O2" th:value="${prod.positive_with_O2}">
+                                <input type="hidden" name="positive_without_O2" th:value="${prod.positive_without_O2}">
                                 <input type="hidden" name="hdu" th:value="${prod.hdu}">
                                 <input type="hidden" name="positive_icu" th:value="${prod.positive_icu}">
                                 <input type="hidden" name="sari_icu" th:value="${prod.sari_icu}">
@@ -79,8 +78,12 @@
                         <td>
                             <form th:action="@{/hospitalDelete}" th:object="${hospitalUpdateForm}" method="post">
                                 <input type="hidden" name="id" th:value="${prod.id}">
+                                <input type="hidden" name="serial_number" th:value="${prod.serial_number}">
                                 <input type="hidden" name="hospital_Name" th:value="${prod.hospital_Name}">
-                                <input type="hidden" name="gen" th:value="${prod.gen}">
+                                <input type="hidden" name="suspected_with_O2" th:value="${prod.suspected_with_O2}">
+                                <input type="hidden" name="suspected_without_O2" th:value="${prod.suspected_without_O2}">
+                                <input type="hidden" name="positive_with_O2" th:value="${prod.positive_with_O2}">
+                                <input type="hidden" name="positive_without_O2" th:value="${prod.positive_without_O2}">
                                 <input type="hidden" name="hdu" th:value="${prod.hdu}">
                                 <input type="hidden" name="positive_icu" th:value="${prod.positive_icu}">
                                 <input type="hidden" name="sari_icu" th:value="${prod.sari_icu}">

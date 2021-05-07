@@ -15,29 +15,24 @@
         <h1> Supremo Healthcare </h1>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class=".mb-2 navbar navbar-dark bg-dark navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/hospitalcreate">Add Facility</a>
-                    </li>
-                </ul>
-            </div>
+            <a class="navbar-brand" href="/home">Home</a>
+            <a class="navbar-brand" href="/hospitalcreate">Add Facility</a>
         </div>
     </nav>
     <form th:action="@{/delete}" th:object="${hospitalUpdateForm}" method="post">
-        <div class="row mb-3">
+        <!--<div class="row mb-3">
             <label class="col-sm-2 col-form-label">ID</label>
             <div class="col-sm-10">
                 <input type="text" name="id" th:value="${hospitalUpdateForm.id}" readonly="">
+            </div>
+        </div>-->
+        <input type="hidden" name="id" th:value="${hospitalUpdateForm.id}" readonly="">
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Serial No</label>
+            <div class="col-sm-10">
+                <input type="text" name="serial_number" th:value="${hospitalUpdateForm.serial_number}" readonly="">
             </div>
         </div>
         <div class="row mb-3">
@@ -47,9 +42,27 @@
             </div>
         </div>
         <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">GEN</label>
+            <label class="col-sm-2 col-form-label">Suspected With O2</label>
             <div class="col-sm-10">
-                <input type="text" name="gen" th:value="${hospitalUpdateForm.gen}" readonly="">
+                <input type="text" name="suspected_with_O2" th:value="${hospitalUpdateForm.suspected_with_O2}" readonly="">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Suspected without O2</label>
+            <div class="col-sm-10">
+                <input type="text" name="suspected_without_O2" th:value="${hospitalUpdateForm.suspected_without_O2}" readonly="">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Positive with O2</label>
+            <div class="col-sm-10">
+                <input type="text" name="positive_with_O2" th:value="${hospitalUpdateForm.positive_with_O2}" readonly="">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Positive without O2</label>
+            <div class="col-sm-10">
+                <input type="text" name="positive_without_O2" th:value="${hospitalUpdateForm.positive_without_O2}" readonly="">
             </div>
         </div>
         <div class="row mb-3">

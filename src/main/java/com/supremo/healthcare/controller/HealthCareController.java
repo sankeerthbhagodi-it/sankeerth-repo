@@ -16,7 +16,7 @@ import java.util.Objects;
 @RequestMapping("/")
 public class HealthCareController {
 
-    private final static String HOME_URL = "home";
+    private final static String HOME_URL = "index";
 
     @Autowired
     private HospitalRepository hospitalRepository;
@@ -113,8 +113,12 @@ public class HealthCareController {
 
     private void populateHospital(Hospital hospital, HospitalForm hospitalUpdateForm) {
         if(Objects.nonNull(hospital) && Objects.nonNull(hospitalUpdateForm)) {
+            hospital.setSerial_number(hospitalUpdateForm.getSerial_number());
             hospital.setHospital_Name(hospitalUpdateForm.getHospital_Name());
-            hospital.setGen(hospitalUpdateForm.getGen());
+            hospital.setSuspected_with_O2(hospitalUpdateForm.getSuspected_with_O2());
+            hospital.setSuspected_without_O2(hospitalUpdateForm.getSuspected_without_O2());
+            hospital.setPositive_with_O2(hospitalUpdateForm.getPositive_with_O2());
+            hospital.setPositive_without_O2(hospitalUpdateForm.getPositive_without_O2());
             hospital.setHdu(hospitalUpdateForm.getHdu());
             hospital.setPositive_icu(hospitalUpdateForm.getPositive_icu());
             hospital.setSari_icu(hospitalUpdateForm.getSari_icu());
