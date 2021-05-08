@@ -11,17 +11,17 @@
 
 <body>
 <div class="container">
-    <div class="p-3 mb-2 bg-warning text-dark .bg-gradient text-center fst-italic fw-bold">
+    <div class="p-3 bg-warning text-dark .bg-gradient text-center fst-italic fw-bold">
         <h1> Supremo Healthcare </h1>
     </div>
 
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <nav class="mb-4 navbar navbar-dark bg-dark navbar-expand-lg .mb-2">
         <div class="container-fluid">
             <a class="navbar-brand" href="/home">Home</a>
             <a class="navbar-brand" href="/hospitalcreate">Add Facility</a>
         </div>
     </nav>
-    <form th:action="@{/create}" th:object="${hospitalUpdateForm}" method="post">
+    <form class="row" th:action="@{/create}" th:object="${hospitalUpdateForm}" method="post">
         <!--<div class="mb-3">
             <label  class="form-label">ID</label>
             <input type="text" name="id" th:value="${hospitalUpdateForm.id}" readonly="" value="${hospitalUpdateForm.id}">

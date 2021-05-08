@@ -8,14 +8,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class HealthcareApplication {
-
-	@Autowired
-	HospitalRepository hospitalRepository;
+public class HealthcareApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(HealthcareApplication.class, args);
 		System.out.println("Started");
 	}
-
 }

@@ -1,6 +1,7 @@
 package com.supremo.healthcare.controller;
 
 import com.supremo.healthcare.dao.HospitalRepository;
+import com.supremo.healthcare.dao.RolesRepository;
 import com.supremo.healthcare.form.HospitalForm;
 import com.supremo.healthcare.model.Hospital;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class HealthCareController {
     @GetMapping
     public String getHomePage(Model model){
         model.addAttribute("hospitalUpdateForm", new HospitalForm());
-        return HOME_URL;
+        return "redirect:home";
     }
 
     @RequestMapping("/home")
