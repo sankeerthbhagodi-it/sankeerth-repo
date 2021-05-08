@@ -23,50 +23,79 @@ public class HealthCareController {
     private HospitalRepository hospitalRepository;
 
     @GetMapping
-    public String getHomePage(Model model){
-        model.addAttribute("hospitalUpdateForm", new HospitalForm());
+    public String getHomePage(){
         return "redirect:home";
+    }
+
+    @GetMapping("/errorPageView")
+    public String getErrorPage(){
+        return "errorPageViewTemplate";
     }
 
     @RequestMapping("/home")
     public String getHospitals(Pageable pageable, Model model) {
-        List<Hospital> hospitalModels = hospitalRepository.findAll();
-        model.addAttribute("hospitalModels", hospitalModels);
-        model.addAttribute("hospitalUpdateForm", new HospitalForm());
-        System.out.println("Inside home main method");
+        try {
+            List<Hospital> hospitalModels = hospitalRepository.findAll();
+            model.addAttribute("hospitalModels", hospitalModels);
+            model.addAttribute("hospitalUpdateForm", new HospitalForm());
+            System.out.println("Inside home main method");
+        }catch (RuntimeException re) {
+            re.printStackTrace();
+            return "redirect:errorPageView";
+        }
         return HOME_URL;
     }
 
     @RequestMapping(value="/hospitalUpdate", method = RequestMethod.POST)
     public String hospitalUpdateToEdit(@ModelAttribute(value="hospitalUpdateForm") HospitalForm hospitalUpdateForm, Model model) {
-        model.addAttribute("hospitalUpdateForm", hospitalUpdateForm);
-        return "hospitalUpdateFormPage";
+        try {
+            model.addAttribute("hospitalUpdateForm", hospitalUpdateForm);
+            return "hospitalUpdateFormPage";
+        }catch (RuntimeException re) {
+            re.printStackTrace();
+            return "redirect:errorPageView";
+        }
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute HospitalForm hospitalUpdateForm) {
-        System.out.println("Inside updateHospital");
-        System.out.println(hospitalUpdateForm);
-        // Update the existing Hospital from DB
-        updateHospital(hospitalUpdateForm);
+        try {
+            System.out.println("Inside updateHospital");
+            System.out.println(hospitalUpdateForm);
+            // Update the existing Hospital from DB
+            updateHospital(hospitalUpdateForm);
+        }catch (RuntimeException re) {
+            re.printStackTrace();
+            return "redirect:errorPageView";
+        }
 
         return "redirect:home";
     }
 
     @RequestMapping(value="/hospitalDelete", method = RequestMethod.POST)
     public String hospitalDeleteToEdit(@ModelAttribute(value="hospitalUpdateForm") HospitalForm hospitalUpdateForm, Model model) {
-        model.addAttribute("hospitalUpdateForm", hospitalUpdateForm);
-        return "hospitalDeleteFormPage";
+        try {
+            model.addAttribute("hospitalUpdateForm", hospitalUpdateForm);
+            return "hospitalDeleteFormPage";
+        }catch (RuntimeException re) {
+            re.printStackTrace();
+            return "redirect:errorPageView";
+        }
     }
 
     @PostMapping("/delete")
     public String deleteHospitalFromDB(@ModelAttribute HospitalForm hospitalUpdateForm) {
-        System.out.println("Inside updateHospital");
-        Integer id = hospitalUpdateForm.getId();
-        if(Objects.nonNull(id)) {
-            System.out.println(id);
-            // Delete the existing Hospital from DB
-            deleteHospital(id.toString());
+        try {
+            System.out.println("Inside updateHospital");
+            Integer id = hospitalUpdateForm.getId();
+            if (Objects.nonNull(id)) {
+                System.out.println(id);
+                // Delete the existing Hospital from DB
+                deleteHospital(id.toString());
+            }
+        }catch (RuntimeException re) {
+            re.printStackTrace();
+            return "redirect:errorPageView";
         }
 
         return "redirect:home";
@@ -85,20 +114,30 @@ public class HealthCareController {
 
     @RequestMapping(value="/hospitalcreate", method = RequestMethod.GET)
     public String hospitalcreate(@ModelAttribute(value="hospitalUpdateForm") HospitalForm hospitalUpdateForm, Model model) {
-        model.addAttribute("hospitalUpdateForm", hospitalUpdateForm);
-        return "hospitalCreateFormPage";
+        try {
+            model.addAttribute("hospitalUpdateForm", hospitalUpdateForm);
+            return "hospitalCreateFormPage";
+        }catch (RuntimeException re) {
+            re.printStackTrace();
+            return "redirect:errorPageView";
+        }
     }
     @PostMapping("/create")
     public String createHospital(@ModelAttribute HospitalForm hospitalUpdateForm) {
-        System.out.println("Inside createHospital");
-        System.out.println(hospitalUpdateForm);
-        // Get existing Hospital from DB
-        Hospital hospital = new Hospital();
-        // Popuate the values in hospital from form object
-        populateHospital(hospital,hospitalUpdateForm);
-        // Save the updated Hospital in DB
-        hospitalRepository.save(hospital);
-        System.out.println("Hospital Created");
+        try {
+            System.out.println("Inside createHospital");
+            System.out.println(hospitalUpdateForm);
+            // Get existing Hospital from DB
+            Hospital hospital = new Hospital();
+            // Popuate the values in hospital from form object
+            populateHospital(hospital, hospitalUpdateForm);
+            // Save the updated Hospital in DB
+            hospitalRepository.save(hospital);
+            System.out.println("Hospital Created");
+        }catch (RuntimeException re) {
+            re.printStackTrace();
+            return "redirect:errorPageView";
+        }
         return "redirect:home";
     }
 
